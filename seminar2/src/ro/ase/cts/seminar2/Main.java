@@ -33,8 +33,6 @@ public class Main {
 		System.out.println("Suma disponibila in contul 3 este: " + acc3.getBalance() + " RON");
 		Bank banca = new Bank();
 		BankAccount acc4 = banca.openBankAccount(AccountType.CURRENT);
-		
-		System.out.println((float)15/100);
 	}
 	
 }
