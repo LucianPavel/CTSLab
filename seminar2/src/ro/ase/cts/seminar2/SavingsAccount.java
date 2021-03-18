@@ -2,8 +2,11 @@ package ro.ase.cts.seminar2;
 
 import ro.ase.cts.seminar2.exceptii.IllegalTransferException;
 import ro.ase.cts.seminar2.exceptii.InsufficientFundsException;
+import ro.ase.cts.seminar2.interfaces.Depositable;
+import ro.ase.cts.seminar2.interfaces.Transferable;
+import ro.ase.cts.seminar2.interfaces.Withdrawable;
 
-public class SavingsAccount extends BankAccount {
+public class SavingsAccount extends BankAccount implements Depositable, Withdrawable, Transferable {
 
 	public SavingsAccount() {
 		super();
@@ -26,12 +29,12 @@ public class SavingsAccount extends BankAccount {
 	}
 
 	@Override
-	public void transfer(double amount, Account destination) throws IllegalTransferException, InsufficientFundsException {
+	public void transfer(double amount, Depositable destination) throws IllegalTransferException, InsufficientFundsException {
 		if (((BankAccount)destination).iban.equals(this.iban))
 			throw new IllegalTransferException("Conturile coincid");
 		else {
 			this.withdraw(amount);
-			((BankAccount)destination).deposit(amount);
+			((Depositable)destination).deposit(amount);
 		}
 	}
 	
